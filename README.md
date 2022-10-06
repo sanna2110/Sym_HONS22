@@ -4,4 +4,6 @@
 
 **clone_check.bash**: text file with instructions on clone identification
 
+**PCA.r**: R script for running PCA and plotting
+
 **zooxType_symbiont1234.pl**: script used for identifying proportion of different symbiont genera.
