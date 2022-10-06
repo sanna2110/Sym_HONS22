@@ -195,7 +195,6 @@ zcat dd.countsAll.gz | head -300000 | gzip >dd.counts.gz
 
 Rscript ~/bin/plotQC.R prefix=dd bams=Cbams
 
-
 ##### ANGSD to make IBS matrix
 
 # running angsd with 80% of samples (minInd = 39)
@@ -205,7 +204,6 @@ TODO="-doMajorMinor 1 -skipTriallelic 1 -doMaf 1 -doCounts 1 -makeMatrix 1 -doIB
 
 angsd -b bams.qc -GL 1 $FILTERS $TODO -P 12 -out OKall
 
-
 # running angsd again with 50% of samples (minInd = 25)
 
 FILTERS="-uniqueOnly 1 -minMapQ 20 -minQ 20 -dosnpstat 1 -doHWE 1 -sb_pval 1e-5 -hetbias_pval 1e-5 -minInd 25 -snp_pval 1e-5 -minMaf 0.05 -maxHetFreq 0.5"
@@ -214,6 +212,9 @@ TODO="-doMajorMinor 1 -skipTriallelic 1 -doMaf 1 -doCounts 1 -makeMatrix 1 -doIB
 angsd -b bams.qc -GL 1 $FILTERS $TODO -P 12 -out OK50
 
 # scp OK50.ibsMat, OKall.ibsMat and bams to laptop, use IBS.R to analyze
+
+# making copy bam files to test for clones
+# cp samplename.bam > clonesamplename.bam - do this for five samples, and then run angsd again to make a new ibs matrix, then use clone_check.bash to check for clones
 
 ### extracting ITS2 sequences
 
